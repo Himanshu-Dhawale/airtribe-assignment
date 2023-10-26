@@ -1,46 +1,20 @@
-import React, { useState } from "react";
-import { MoreHorizontal } from "react-feather";
-
+import React from "react";
+import { Trash } from "react-feather";
 import Card from "../Card/Card";
-import Dropdown from "../Dropdown/Dropdown";
 import Editable from "../Editable/Editable";
-
 import "./Board.css";
 
 function Board(props) {
-  // const [showDropdown, setShowDropdown] = useState(false);
-  const handleClick = (id) => {
-    const selectedBoard = props.boards.filter((board) => board.id === id);
-    console.log( selectedBoard,"******");
-    if(selectedBoard){
-      console.log(props.showDropdown,"clicked");
-      props.setShowDropdown(!props.showDropdown);
-    }
-   }
-  //  console.log(props,"id");
   return (
-    <>
-    
     <div className="board">
       <div className="board_header">
         <p className="board_header_title">
           {props.board?.title}
-          <span>{props.board?.cards?.length || 0}</span>
+          <span>({props.board?.cards?.length || 0})</span>
         </p>
-        <div
-          className="board_header_title_more"
-          onClick={props.toggleDropdown}
-        >
-          <MoreHorizontal />
-          {props.showDropdown && (
-            <Dropdown
-              class="board_dropdown"
-              onClose={() => setShowDropdown(false)}
-            >
-              <p onClick={() => props.removeBoard()}>Delete Board</p>
-            </Dropdown>
-          )}
-        </div>
+        <button className="del_btn" onClick={() => props.removeBoard()}>
+          <Trash size={16} />
+        </button>
       </div>
       <div className="board_cards custom-scroll">
         {props.board?.cards?.map((item) => (
@@ -63,7 +37,6 @@ function Board(props) {
         />
       </div>
     </div>
-    </>
   );
 }
 

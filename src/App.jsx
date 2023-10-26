@@ -1,32 +1,5 @@
-// // import React, { useEffect, useState } from "react";
-
-// import './App.css';
-// import Board from './components/Board/Board';
-
-// const App = () => {
-  
-//   return (
-//     <div className="App">
-//      <div className="app_navbar">
-//       <h2>Trello Clone</h2>
-//      </div>
-//      <div className="app_outer">
-//       <div className="app_boards">
-//         <Board/>
-//         <Board/>
-//         <Board/>
-//       </div>
-//      </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import React, { useEffect, useState } from "react";
-
 import Board from "./components/Board/Board";
-
 import "./App.css";
 import Editable from "./components/Editable/Editable";
 
@@ -39,7 +12,7 @@ function App() {
     bid: "",
     cid: "",
   });
- const[ showDropdown, setShowDropdown] = useState({});
+
   const addboardHandler = (name) => {
     const tempBoards = [...boards];
     tempBoards.push({
@@ -144,24 +117,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem("prac-kanban", JSON.stringify(boards));
   }, [boards]);
-  const toggleDropdown = (id) => {
-    setShowDropdown((prevBoardStates) => ({
-      ...prevBoardStates,
-      [id]: !prevBoardStates[id],
-    }));
-  };
-  
+
   return (
     <div className="app">
       <div className="app_boards_container">
         <div className="app_boards">
-          {boards.map((item) => (
+          {boards.map((item, index) => (
             <Board
-            boards={boards}
-            showDropdown={showDropdown}
-            setShowDropdown={setShowDropdown}
-            //  handleClick={()=> handleClick(item.id)}
-            toggleDropdown= {() => toggleDropdown(item.id)}
+              boards={boards}
               key={item.id}
               board={item}
               addCard={addCardHandler}
