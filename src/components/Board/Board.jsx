@@ -8,9 +8,19 @@ import Editable from "../Editable/Editable";
 import "./Board.css";
 
 function Board(props) {
-  const [showDropdown, setShowDropdown] = useState(false);
-
+  // const [showDropdown, setShowDropdown] = useState(false);
+  const handleClick = (id) => {
+    const selectedBoard = props.boards.filter((board) => board.id === id);
+    console.log( selectedBoard,"******");
+    if(selectedBoard){
+      console.log(props.showDropdown,"clicked");
+      props.setShowDropdown(!props.showDropdown);
+    }
+   }
+  //  console.log(props,"id");
   return (
+    <>
+    
     <div className="board">
       <div className="board_header">
         <p className="board_header_title">
@@ -19,10 +29,10 @@ function Board(props) {
         </p>
         <div
           className="board_header_title_more"
-          onClick={() => setShowDropdown(true)}
+          onClick={props.toggleDropdown}
         >
           <MoreHorizontal />
-          {showDropdown && (
+          {props.showDropdown && (
             <Dropdown
               class="board_dropdown"
               onClose={() => setShowDropdown(false)}
@@ -53,6 +63,7 @@ function Board(props) {
         />
       </div>
     </div>
+    </>
   );
 }
 

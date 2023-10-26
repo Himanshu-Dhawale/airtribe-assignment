@@ -233,15 +233,6 @@
 // export default CardInfo;
 
 import React, { useEffect, useState } from "react";
-import {
-  Calendar,
-  CheckSquare,
-  List,
-  Tag,
-  Trash,
-  Type,
-  X,
-} from "react-feather";
 
 import Modal from "../../Modal/Modal";
 import Editable from "../../Editable/Editable";

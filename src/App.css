@@ -11,7 +11,9 @@
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   border: 1px solid gray;
 }
-
+body{
+  margin: 0;
+}
 .app {
   width: 100%;
   height: 100vh;

@@ -39,7 +39,7 @@ function App() {
     bid: "",
     cid: "",
   });
-
+ const[ showDropdown, setShowDropdown] = useState({});
   const addboardHandler = (name) => {
     const tempBoards = [...boards];
     tempBoards.push({
@@ -144,13 +144,24 @@ function App() {
   useEffect(() => {
     localStorage.setItem("prac-kanban", JSON.stringify(boards));
   }, [boards]);
-
+  const toggleDropdown = (id) => {
+    setShowDropdown((prevBoardStates) => ({
+      ...prevBoardStates,
+      [id]: !prevBoardStates[id],
+    }));
+  };
+  
   return (
     <div className="app">
       <div className="app_boards_container">
         <div className="app_boards">
           {boards.map((item) => (
             <Board
+            boards={boards}
+            showDropdown={showDropdown}
+            setShowDropdown={setShowDropdown}
+            //  handleClick={()=> handleClick(item.id)}
+            toggleDropdown= {() => toggleDropdown(item.id)}
               key={item.id}
               board={item}
               addCard={addCardHandler}
